@@ -3,11 +3,9 @@ import { describe, it, expect } from "vitest";
 import SolutionView from "../../views/SolutionView.vue";
 
 describe("SolutionView", () => {
-  it("renders the initial task correctly", () => {
+  it("renders solution view correctly", () => {
     const wrapper = mount(SolutionView);
-
-    const taskElement = wrapper.get('[data-testid="task-item-0"]');
-    expect(taskElement.text()).toContain("Go to the moon");
-    expect(taskElement.classes()).not.toContain("done");
+    const emptyElement = wrapper.get('[data-testid="empty-list"]');
+    expect(emptyElement.text()).toContain("Empty list.");
   });
 });

@@ -35,7 +35,7 @@
         </div>
       </li>
     </transition-group>
-    <h4 v-if="tasks.length === 0">Empty list.</h4>
+    <h4 data-testid="empty-list" v-if="tasks.length === 0">Empty list.</h4>
   </div>
 </template>
 <script lang="ts">
