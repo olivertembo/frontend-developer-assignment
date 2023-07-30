@@ -36,21 +36,27 @@
     <h4 v-if="tasks.length === 0">Empty list.</h4>
   </div>
 </template>
-<script>
+<script lang="ts">
 import { ref } from "vue";
+
+interface Task {
+  done: boolean;
+  content: string;
+}
 
 export default {
   name: "SolutionView",
   setup() {
-    const newTask = ref("");
-    const defaultTasks = [
+    const newTask = ref<string>("");
+    const defaultTasks: Task[] = [
       {
         done: false,
         content: "Go to the moon",
       },
     ];
-    const tasksData = JSON.parse(localStorage.getItem("tasks")) || defaultTasks;
-    const tasks = ref(tasksData);
+    const tasksData: Task[] =
+      JSON.parse(localStorage.getItem("tasks") || "[]") || defaultTasks;
+    const tasks = ref<Task[]>(tasksData);
     function addTask() {
       if (newTask.value) {
         tasks.value.push({
@@ -61,11 +67,11 @@ export default {
       }
       saveData();
     }
-    function doneTask(task) {
+    function doneTask(task: Task) {
       task.done = !task.done;
       saveData();
     }
-    function removeTodo(index) {
+    function removeTodo(index: number) {
       tasks.value.splice(index, 1);
       saveData();
     }
