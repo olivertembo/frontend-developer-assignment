@@ -9,7 +9,9 @@
         name="newTask"
         autocomplete="off"
       />
-      <button data-testid="add-task-btn">Add task</button>
+      <button data-testid="add-task-btn" :disabled="isNewTaskEmpty">
+        Add task
+      </button>
     </form>
     <h2>task list</h2>
     <transition-group name="task-animation" tag="ul">
@@ -37,7 +39,7 @@
   </div>
 </template>
 <script lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 interface Task {
   done: boolean;
@@ -79,6 +81,9 @@ export default {
       const storageData = JSON.stringify(tasks.value);
       localStorage.setItem("tasks", storageData);
     }
+    const isNewTaskEmpty = computed(() => {
+      return newTask.value.trim() === "";
+    });
     return {
       tasks,
       newTask,
@@ -86,6 +91,7 @@ export default {
       doneTask,
       removeTodo,
       saveData,
+      isNewTaskEmpty,
     };
   },
   transition: {
@@ -138,6 +144,15 @@ export default {
   cursor: pointer;
   background-color: #68a8aa;
   border: 1px solid #68a8aa;
+  color: #fff;
+  font-weight: bold;
+  outline: none;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+.task button:disabled {
+  background-color: #ccc;
+  border: 1px solid #ccc;
   color: #fff;
   font-weight: bold;
   outline: none;
