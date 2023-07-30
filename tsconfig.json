@@ -1,0 +1,21 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.config.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.vitest.json"
+    }
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "tests/*.spec.ts",
+    "path/to/other/ignored/file.ts"
+  ]
+}
